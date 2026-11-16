@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class Toppers Results</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #071b38, #123e68);
+  color: white;
+  min-height: 100vh;
+  text-align: center;
+}
+
+header {
+  padding: 40px 15px 25px;
+}
+
+header h1 {
+  font-size: 30px;
+  color: #ffd700;
+  text-transform: uppercase;
+}
+
+header p {
+  color: #dceaff;
+}
+
+.buttons {
+  margin: 20px;
+}
+
+button {
+  padding: 14px 28px;
+  margin: 8px;
+  border: none;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #123e68;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.active,
+button:hover {
+  background: #ffd700;
+}
+
+.result-box {
+  max-width: 600px;
+  margin: 25px auto;
+  padding: 25px;
+  background: white;
+  color: #123e68;
+  border-radius: 16px;
+  width: 90%;
+  box-shadow: 0 8px 25px #0005;
+}
+
+.result-box h2 {
+  color: #123e68;
+  margin-bottom: 25px;
+}
+
+.student {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 12px;
+  margin: 12px 0;
+  border-radius: 10px;
+  background: #edf4ff;
+  font-weight: bold;
+}
+
+.first {
+  background: #fff1bd;
+  border: 2px solid #e5b800;
+}
+
+.second {
+  background: #e6e6e6;
+}
+
+.third {
+  background: #f8e1d1;
+}
+
+.rank {
+  font-size: 18px;
+}
+
+.marks {
+  color: #087c46;
+}
+
+footer {
+  padding: 25px;
+  color: #cbd9ed;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏆 TOPPERS RESULT</h1>
+  <h2>CLASS 9TH & 10TH</h2>
+  <p>Allied School Mian Ali Campus</p>
+</header>
+
+<div class="buttons">
+  <button id="btn9" class="active"
+  onclick="showResult(9)">9th Class</button>
+
+  <button id="btn10"
+  onclick="showResult(10)">10th Class</button>
+</div>
+
+<div class="result-box" id="result">
+  <h2>🏆 9th Class Toppers</h2>
+
+  <div class="student first">
+    <span>🥇 1st - M. Saim</span>
+    <span class="marks">520 Marks</span>
+  </div>
+
+  <div class="student second">
+    <span>🥈 2nd - Murex</span>
+    <span class="marks">500 Marks</span>
+  </div>
+
+  <div class="student third">
+    <span>🥉 3rd - Faizan</span>
+    <span class="marks">491 Marks</span>
+  </div>
+</div>
+
+<footer>
+  <p>✨ Hard Work Always Pays Off ✨</p>
+  <p>Allied School Mian Ali Campus</p>
+</footer>
+
+<script>
+const results = {
+  9: [
+    {name: "M. Saim", marks: 520},
+    {name: "MuEEZ", marks: 500},
+    {name: "Faizan", marks: 491}
+  ],
+
+  10: [
+    {name: "Shahzaib", marks: 1113},
+    {name: "Shahzain", marks: 1111}
+  ]
+};
+
+function showResult(cls) {
+  const result = document.getElementById("result");
+
+  document.getElementById("btn9").classList.toggle(
+    "active", cls === 9
+  );
+
+  document.getElementById("btn10").classList.toggle(
+    "active", cls === 10
+  );
+
+  let html = `<h2>🏆 ${cls}th Class Toppers</h2>`;
+
+  results[cls].forEach((student, index) => {
+    const medals = ["🥇", "🥈", "🥉"];
+    const positions = ["1st", "2nd", "3rd"];
+    const styles = ["first", "second", "third"];
+
+    html += `
+      <div class="student ${styles[index]}">
+        <span>${medals[index]} ${positions[index]} - ${student.name}</span>
+        <span class="marks">${student.marks} Marks</span>
+      </div>
+    `;
+  });
+
+  result.innerHTML = html;
+}
+</script>
+
+</body>
+</html>
